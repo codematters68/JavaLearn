@@ -1,0 +1,68 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class Tuna extends JFrame
+{
+	private JTextField userTF;
+	private JLabel userLabel;
+	private JLabel passLabel;
+	private JPasswordField passTF;
+	
+	private JButton button;
+	
+	
+	Tuna()
+	{
+		super("Title");
+		setLayout(new FlowLayout());
+		
+		userLabel = new JLabel("Username : ");
+		add(userLabel);
+		
+		userTF = new JTextField(40);
+		add(userTF);
+		
+		passLabel = new JLabel("Password : ");
+		add(passLabel);
+		
+		passTF = new JPasswordField(40);
+		add(passTF);
+		
+		button = new JButton("continue");
+		add(button);
+		
+		thehandler handler = new thehandler();
+		button.addActionListener(handler);
+	}
+	
+	private class thehandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			String s1 = "Wrong Username or pass";
+			char[] s;
+			String s2 = "";
+			if(e.getSource()==button)
+			{
+				s1 = userTF.getText();
+				s = passTF.getPassword();
+				s2 = String.valueOf(s);
+				if(s1.equals("Codematters") && s2.equals("12345678") )
+				{
+					
+					s1 = "ok";
+				}
+				else
+				{
+					s1 = "Wrong";
+				}
+			}
+			
+			JOptionPane.showMessageDialog(null, s1, "t", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	
+	
+}
